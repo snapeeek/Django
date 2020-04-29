@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Widok</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!--bootstrap css-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+
+</head>
+<body>
+
+{% for b in sklepy %}
+
+    {% if b.shop_name in validator %}
+        <h3>{{ b.shop_name }}</h3>
+        <table class="table">
+            <tr>
+                <th>Product name</th>
+                <th>Price [zł]</th>
+                <th>Quantity</th>
+                <th>To pay [zł]</th>
+            </tr>
+
+            {% for a in lista %}
+                {% if b.shop_name == a.shop.shop_name %}
+                    <tr>
+                        <td>{{ a.product }}</td>
+                        <td>{{ a.product.product_price }}</td>
+                        <td>{{ a.product_count }}</td>
+                        <td>{{ a.countPrice }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            <tr>
+                <td></td>
+                <td></td>
+                <th>Podsumowanie</th>
+                <th> {{ prices.pop }} </th>
+            </tr>
+        </table>
+    {% endif %}
+{% endfor %}
+
+<a type="button" class="btn btn-primary" href="/">Wróć</a>
+
+</body>
+</html>
